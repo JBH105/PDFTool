@@ -148,7 +148,7 @@ export default function FIleUpload() {
                     </h3>
 
                     <h3 className="lg:text-[32px] hidden md:block sm:text-[28] text-[20px] text-[#171717] font-bold">
-                      Drag and drop document here to upload
+                      Drag & Drop or Click to Upload File
                     </h3>
                     <input
                       type="file"
@@ -156,7 +156,6 @@ export default function FIleUpload() {
                       className="hidden"
                       onChange={(e) => handleSelect(e)}
                       accept={selectTab?.accept}
-                      maxSize={10 * 1024 * 1024} // 10 MB in bytes
                     />
 
                     <label

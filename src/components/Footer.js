@@ -3,6 +3,32 @@ import Link from "next/link";
 import { useContext } from "react";
 
 const navigation = {
+  legal: [
+    {
+      name: "ABOUT US",
+      href: "/about",
+      current: false,
+      accept: "image/*",
+    },
+    {
+      name: "Terms of Use",
+      href: "/about",
+      current: false,
+      accept: "image/*",
+    },
+    {
+      name: "Privacy Policy",
+      href: "/about",
+      current: false,
+      accept: "image/*",
+    },
+    {
+      name: "Cancellation and Refund Policy",
+      href: "/about",
+      current: false,
+      accept: "image/*",
+    },
+  ],
   main: [
     {
       name: "PDF To URL",
@@ -48,13 +74,7 @@ const navigation = {
       href: "/image-to-url",
       current: false,
       accept: "image/*",
-    },
-    {
-      name: "ABOUT",
-      href: "/about",
-      current: false,
-      accept: "image/*",
-    },
+    }
   ],
   social: [
     {
@@ -126,23 +146,50 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-100/[50%]">
-      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8 text-center">
-        <nav
-          className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
-          aria-label="Footer"
-        >
-          {navigation.main.map((item) => (
-            <div key={item.name} className="pb-6">
-              <Link
-                href={item.href}
-                onClick={() => setSelectTab(item)}
-                className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-              >
-                {item.name}
-              </Link>
+      <div className="mx-auto max-w-7xl overflow-hidden px-6 pt-20 pb-5 sm:pt-24 lg:px-8 text-center">
+        <div className="block md:flex justify-between items-start gap-5">
+          <div className="flex flex-col items-start w-full md:w-[30%]">
+            <a href="/" className="-m-1.5 p-1.5">
+              {/* <span className="sr-only">Your Company</span> */}
+              <img className="h-8 w-auto" src="/assets/Group1.svg" alt="" />
+            </a>
+            <p className="text-sm text-gray-600 text-start pt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis nostrum cum harum maiores recusandae possimus, iure veritatis molestiae sit optio.</p>
+          </div>
+          <div className="block min-[450px]:flex w-full md:w-[60%] justify-end gap-10 pt-5 md:pt-0">
+            <div className="flex flex-col items-start w-full md:w-fit">
+              <p className="text-xl font-bold">LEGAL</p>
+              <div className="grid grid-cols-1 gap-y-2 pt-2">
+                {navigation.legal.map((item) => (
+                  <div key={item.name} className="text-start">
+                    <Link
+                      href={item.href}
+                      onClick={() => setSelectTab(item)}
+                      className="text-sm leading-6 text-gray-600 hover:text-gray-900 uppercase"
+                    >
+                      {item.name}
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
-        </nav>
+            <div className="flex flex-col items-start w-full md:w-fit pt-5 min-[450px]:pt-0">
+              <p className="text-xl font-bold">TOOLS</p>
+              <div className="grid grid-cols-2 gap-y-2 gap-x-5 pt-2">
+                {navigation.main.map((item) => (
+                  <div key={item.name} className="text-start">
+                    <Link
+                      href={item.href}
+                      onClick={() => setSelectTab(item)}
+                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                    >
+                      {item.name}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="mt-10 flex justify-center space-x-10">
           {navigation.social.map((item) => (
             <a
@@ -155,7 +202,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="mt-10 text-center text-xs leading-5 text-gray-500">
+        <p className="mt-5 text-center text-xs leading-5 text-gray-500">
           &copy; 2023 URL2fy, Inc. All rights reserved.
         </p>
       </div>
