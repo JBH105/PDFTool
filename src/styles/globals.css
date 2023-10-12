@@ -38,4 +38,31 @@
        transform: rotate(1turn);
     }
  }
+ .dropzone {
+   text-align: center;
+   cursor: pointer;
+ }
+ 
+ .preview {
+   display: flex;
+   flex-wrap: wrap;
+ }
+ 
+ .pdf-preview {
+   margin: 10px;
+   border: 1px solid #cccccc;
+   text-align: center;
+ }
+ 
 
+
+ .custom-scrollbars__content {
+   overflow: auto;
+   scrollbar-width: none;
+   -ms-overflow-style: none;
+ }
+ 
+ .custom-scrollbars__content::-webkit-scrollbar {
+   display: none;
+ }
+ 

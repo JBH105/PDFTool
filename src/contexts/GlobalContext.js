@@ -8,16 +8,10 @@ const GlobalContext = React.createContext();
 
 const GlobalProvider = ({ children }) => {
   const [global, setGlobal] = useState({
-    serverURL: "http://localhost:8080",
+    serverURL: "https://45f0-116-72-18-108.ngrok-free.app",
   });
   const [selectTab, setSelectTab] = useState();
-
-  const s3 = new S3({
-    region: "ap-south-1",
-    accessKeyId: process.env.ACCESSKEYID,
-    secretAccessKey: process.env.SECRETACCESSKEY,
-    signatureVersion: "v4",
-  });
+  const [cropURL, setCropURL] = useState("");
 
   const invokeServer = useCallback(
     async (method, route, data) => {
@@ -34,12 +28,26 @@ const GlobalProvider = ({ children }) => {
     [global.serverURL]
   );
 
+  const CropFile = async (data) => {
+    invokeServer("post", "/api/crop-pdf/", data)
+      .then((result) => {
+        if (result?.data) {
+          result.data.file_url = global.serverURL + result?.data?.file_url;
+          setCropURL(result.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error, "-=-=-=>>>>>");
+      });
+  };
   return (
     <GlobalContext.Provider
       value={{
         invokeServer,
         selectTab,
         setSelectTab,
+        CropFile,
+        cropURL,
       }}
     >
       {children}
