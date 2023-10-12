@@ -89,7 +89,7 @@ export default function FIleUpload() {
     formData.append("pdf_file", pdfFiles[0]);
     formData.append("x", "187.174");
     formData.append("y", "810.1739");
-    formData.append("width", "240.0435");
+    formData.append("width", "220.0435");
     formData.append("height", "355.6088");
 
     const data = await CropFile(formData);
@@ -136,15 +136,11 @@ export default function FIleUpload() {
                   return (
                     <div key={index}>
                       <div className="pdf-preview w-[100px]">
-                        <Document file={file}>
-                          <Page
-                            pageNumber={1}
-                            renderMode="canvas"
-                            renderTextLayer={null}
-                            width={80}
-                            height={50}
-                          />
-                        </Document>
+                        <object
+                          width="100px"
+                          height="100px"
+                          data={URL.createObjectURL(file)}
+                        ></object>
                         <button
                           className="remove-button z-[9999999]"
                           onClick={() => removeFile(index)}
