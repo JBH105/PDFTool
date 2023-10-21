@@ -23,7 +23,8 @@ const navigation = {
       name: "E-commerce",
       href: "/pdf-to-url",
       current: false,
-      accept: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      accept:
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     },
   ],
   main: [
@@ -71,7 +72,7 @@ const navigation = {
       href: "/image-to-url",
       current: false,
       accept: "image/*",
-    }
+    },
   ],
 };
 
@@ -81,7 +82,9 @@ export default function Header({ HandelSelectTab }) {
   const router = useRouter();
 
   useEffect(() => {
-    setSelectTab(navigation.nav?.find((item) => item.href === router?.pathname));
+    setSelectTab(
+      navigation.nav?.find((item) => item.href === router?.pathname)
+    );
   }, [router.pathname]);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -89,7 +92,6 @@ export default function Header({ HandelSelectTab }) {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
 
   return (
     <header className="bg-white top-0 sticky z-[999] shadow-dark">
@@ -99,7 +101,7 @@ export default function Header({ HandelSelectTab }) {
       >
         <a href="/" className="-m-1.5 p-1.5">
           {/* <span className="sr-only">Your Company</span> */}
-          <img className="h-8 w-auto" src="/assets/Group1.svg" alt="" />
+          <img className="h-[60px] w-auto" src="/assets/logo.png" alt="" />
         </a>
         <div className="flex lg:hidden">
           <button
@@ -124,8 +126,9 @@ export default function Header({ HandelSelectTab }) {
                   {item.name}
                 </Link>
                 <div
-                  className={`${item.name === selectTab?.name ? "w-full" : "w-0"
-                    } absolute bottom-0 h-[2px] bg-gray-700`}
+                  className={`${
+                    item.name === selectTab?.name ? "w-full" : "w-0"
+                  } absolute bottom-0 h-[2px] bg-gray-700`}
                 >
                   {" "}
                 </div>
@@ -160,7 +163,6 @@ export default function Header({ HandelSelectTab }) {
               </div>
             )}
           </div>
-
         </div>
       </nav>
       <Dialog

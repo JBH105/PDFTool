@@ -140,6 +140,7 @@ const navigation = {
     },
   ],
 };
+
 export default function Footer() {
   const { selectTab, setSelectTab } = useContext(GlobalContext);
 
@@ -150,7 +151,7 @@ export default function Footer() {
           <div className="flex flex-col items-start w-full md:w-[30%]">
             <a href="/" className="-m-1.5 p-1.5">
               {/* <span className="sr-only">Your Company</span> */}
-              <img className="h-8 w-auto" src="/assets/Group1.svg" alt="" />
+              <img className="h-[110px] w-auto" src="/assets/logo.png" alt="" />
             </a>
             <p className="text-sm text-gray-600 text-start pt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis nostrum cum harum maiores recusandae possimus, iure veritatis molestiae sit optio.</p>
           </div>
