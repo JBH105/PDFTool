@@ -140,7 +140,6 @@ const navigation = {
     },
   ],
 };
-
 export default function Footer() {
   const { selectTab, setSelectTab } = useContext(GlobalContext);
 
