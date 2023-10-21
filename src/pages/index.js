@@ -1,13 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
+import Home from "@/components/home";
 
-export default function Home() {
+export default function Index() {
   const router = useRouter();
 
-  useEffect(() => {
-    // Redirect to "/pdf" route
-    router.push("/home");
-  }, []);
-
-  return null;
+  return (
+    <div>
+      <Head>
+        <title>PDFCrop</title>
+      </Head>
+      <Home />
+    </div>
+  );
 }

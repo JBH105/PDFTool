@@ -4,13 +4,13 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* <meta name="theme-color" content="#000000" /> */}
+        <meta name="theme-color" content="#000000" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="URL2fy" />
-        <meta property="og:image" content="/assets/Group 3.png" />
+        <meta property="og:title" content="PDFCrop" />
+        <meta property="og:image" content="/assets/logo.png" />
         <meta
           property="og:description"
-          content="Instantly convert any file type to a live URL. Effortlessly transform and share documents, images, videos, and more. Try our file-to-live-URL converter now!"
+          content="PDf Crop is a set of free, simple onlin tools for PDF file editing. You can resize, crop, rotate, splite or merge, optimize, and convert PDFs."
         />
         <meta
           property="keywords"

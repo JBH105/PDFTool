@@ -9,7 +9,7 @@ const navigation = {
   nav: [
     {
       name: "Home",
-      href: "/home",
+      href: "/",
       current: false,
       accept: "",
     },
