@@ -20,6 +20,12 @@ const navigation = {
       accept: "application/pdf",
     },
     {
+      name: "Merge PDF",
+      href: "/merge-pdf",
+      current: false,
+      accept: "application/pdf",
+    },
+    {
       name: "E-commerce",
       href: "/pdf-to-url",
       current: false,
