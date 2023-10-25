@@ -57,12 +57,12 @@
 
 
  .custom-scrollbars__content {
-   overflow: auto;
-   scrollbar-width: none;
-   -ms-overflow-style: none;
+   overflow: auto !important;
+   scrollbar-width: none !important;
+   -ms-overflow-style: none !important;
  }
  
  .custom-scrollbars__content::-webkit-scrollbar {
-   display: none;
+   display: none !important;
  }
  

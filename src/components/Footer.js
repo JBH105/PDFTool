@@ -32,7 +32,7 @@ const navigation = {
   main: [
     {
       name: "PDF To URL",
-      href: "/pdf-to-url",
+      href: "/crop-pdf",
       current: false,
       accept: "application/pdf",
     },

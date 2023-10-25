@@ -15,7 +15,7 @@ const navigation = {
     },
     {
       name: "Crop PDF",
-      href: "/pdf-to-url",
+      href: "/crop-pdf",
       current: false,
       accept: "application/pdf",
     },
@@ -27,7 +27,7 @@ const navigation = {
     },
     {
       name: "E-commerce",
-      href: "/pdf-to-url",
+      href: "/crop-pdf",
       current: false,
       accept:
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -36,7 +36,7 @@ const navigation = {
   main: [
     {
       name: "PDF To URL",
-      href: "/pdf-to-url",
+      href: "/crop-pdf",
       current: false,
       accept: "application/pdf",
     },

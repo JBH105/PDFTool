@@ -1,20 +1,18 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import copy from "copy-to-clipboard";
-import axios from "axios";
+
 import Image from "next/image";
 import { BiCopy, BiSolidCopy, BiTrash } from "react-icons/bi";
-import GlobalContext from "@/contexts/GlobalContext";
 import { useDropzone } from "react-dropzone";
-import { Document, Page, pdfjs } from "react-pdf";
 import { PDFDocument } from "pdf-lib";
 
 export default function Merge() {
-  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
   const [pdfFiles, setPdfFiles] = useState([]);
   const [mergedPdf, setMergedPdf] = useState(null);
   const [loader, setLoader] = useState(false);
+  console.log(pdfFiles, "pdfFiles");
 
   const onRemoveFile = (index) => {
+    setMergedPdf(null)
     const updatedFiles = [...pdfFiles];
     updatedFiles.splice(index, 1);
     setPdfFiles(updatedFiles);
@@ -22,6 +20,7 @@ export default function Merge() {
 
   const Drop = (event) => {
     event.preventDefault();
+    setMergedPdf(null)
     const fromIndex = parseInt(event.dataTransfer.getData("fromIndex"), 10);
     const toIndex = parseInt(event.target.dataset.index, 10);
 
@@ -75,6 +74,12 @@ export default function Merge() {
 
       const mergedPdfBytes = await pdfDoc.save();
       setMergedPdf(new Blob([mergedPdfBytes], { type: "application/pdf" }));
+
+      const mergedPdfFile = new File([mergedPdfBytes], "MergedFile.pdf", {
+        type: "application/pdf",
+        lastModified: new Date().getTime(), // Set the last modified time as the current time
+      });
+      console.log(mergedPdfFile, "mergedPdfFile");
       setLoader(false);
     } catch (error) {
       setLoader(false);
@@ -99,13 +104,13 @@ export default function Merge() {
           <div
             className={`border px-4 border-slate-300 flex flex-col items-center justify-evenly min-h-[250px] sm:min-h-[332px]  rounded-lg`}
           >
-            <div {...getRootProps()} className="dropzone pt-2">
+            <div {...getRootProps()} className="dropzone pt-1">
               <div className="justify-center flex">
-                <Image
-                  src="/assets/icons/icons8-upload-document-96.png"
-                  width={50}
-                  height={80}
-                  className="w-[40px] sm:w-[50px]"
+              <Image
+                  src="/assets/pdficon.png"
+                  width={100}
+                  height={100}
+                  className="w-[100px] sm:w-[200px]"
                   alt="file"
                 />
               </div>
@@ -144,10 +149,12 @@ export default function Merge() {
                         style={{ cursor: "move" }}
                       >
                         <object
+                          className="custom-scrollbars__content"
                           width="100px"
                           height="100px"
                           data={URL.createObjectURL(file)}
                         ></object>
+
                         <button
                           className="remove-button z-[9999999]"
                           onClick={() => onRemoveFile(index)}
@@ -178,7 +185,7 @@ export default function Merge() {
             ) : (
               pdfFiles.length > 0 && (
                 <button
-                  className="flex mb-6 gap-4 bg-[#3661e3] hover:bg-[#4f79f9] transition focus:ring-2 outline-none focus:ring-[#3661e391] focus:ring-offset-2 text-white text-[14px] sm:text-[18px] rounded px-8 py-2.5"
+                  className="flex my-6 gap-4 bg-[#3661e3] hover:bg-[#4f79f9] transition focus:ring-2 outline-none focus:ring-[#3661e391] focus:ring-offset-2 text-white text-[14px] sm:text-[18px] rounded px-8 py-2.5"
                   onClick={downloadMergedPDF}
                 >
                   Download Merged PDF

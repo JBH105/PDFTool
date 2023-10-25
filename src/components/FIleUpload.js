@@ -1,37 +1,33 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import copy from "copy-to-clipboard";
-import axios from "axios";
 import Image from "next/image";
-import { BiCopy, BiSolidCopy, BiTrash } from "react-icons/bi";
+import { BiTrash } from "react-icons/bi";
 import GlobalContext from "@/contexts/GlobalContext";
 import { useDropzone } from "react-dropzone";
-import { Document, Page, pdfjs } from "react-pdf";
 import { PDFDocument } from "pdf-lib";
 
-export default function FIleUpload() {
-  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-  const { selectTab, setSelectTab, CropFile, cropURL } =
-    useContext(GlobalContext);
+export default function FIleUpload({ size }) {
+  const {
+    selectTab,
+    setSelectTab,
+    CropFile,
+    cropURL,
+    setCropURL,
+    loader,
+    setLoader,
+  } = useContext(GlobalContext);
   const [isDragging, setIsDragging] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [convertURL, setConvertURL] = useState(false);
-  const [loader, setLoader] = useState(false);
-  const [url, setUrl] = useState("");
-  const [copyurl, setCopyUrl] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState(null);
-  const [mergedFile, setMergedFile] = useState();
-
   const [pdfFiles, setPdfFiles] = useState([]);
 
   const onDrop = useCallback((acceptedFiles) => {
+    setCropURL("")
     const pdfFilesArray = acceptedFiles.filter(
       (file) => file.type === "application/pdf"
     );
     setPdfFiles(pdfFilesArray);
-    mergePDF();
   }, []);
 
-  const removeFile = (index) => {
+  const onRemoveFile = (index) => {
+    setCropURL("")
     const updatedFiles = [...pdfFiles];
     updatedFiles.splice(index, 1);
     setPdfFiles(updatedFiles);
@@ -45,55 +41,56 @@ export default function FIleUpload() {
 
   const mergePDF = async () => {
     try {
-      // Load and merge the uploaded PDFs
-      const mergedDoc = await PDFDocument.create();
-      for (const file of pdfFiles) {
-        const fileArrayBuffer = await file.arrayBuffer();
-        const pdfDoc = await PDFDocument.load(fileArrayBuffer);
-        const copiedPages = await mergedDoc.copyPages(
-          pdfDoc,
-          pdfDoc.getPageIndices()
+      setLoader(true);
+      const pdfDoc = await PDFDocument.create();
+
+      for (const pdfFile of pdfFiles) {
+        const existingPdfBytes = await pdfFile.arrayBuffer();
+        const existingPdfDoc = await PDFDocument.load(existingPdfBytes);
+
+        const copiedPages = await pdfDoc.copyPages(
+          existingPdfDoc,
+          existingPdfDoc.getPageIndices()
         );
-        copiedPages.forEach((page) => mergedDoc.addPage(page));
+
+        for (const copiedPage of copiedPages) {
+          pdfDoc.addPage(copiedPage);
+        }
       }
 
-      setMergedFile(mergedDoc);
-
-      // Optionally, you can provide a download link for the merged PDF
-      const mergedPdfBytes = await mergedDoc.save();
+      const mergedPdfBytes = await pdfDoc.save();
       const blob = new Blob([mergedPdfBytes], { type: "application/pdf" });
       const downloadLink = URL.createObjectURL(blob);
-      setDownloadUrl(downloadLink);
+
+      console.log(downloadLink, "downloadLink");
+
+      const mergedPdfFile = new File([mergedPdfBytes], "MergedFile.pdf", {
+        type: "application/pdf",
+        lastModified: new Date().getTime(), // Set the last modified time as the current time
+      });
+      setLoader(false);
+      return mergedPdfFile;
     } catch (error) {
-      console.error(error);
+      setLoader(false);
+      console.error("Error while merging PDFs:", error);
     }
   };
 
-  const copyToClipboard = () => {
-    copy(url);
-    setCopyUrl(true);
-  };
-  async function pdfDocumentToBlob(pdfDoc) {
-    const pdfBytes = await pdfDoc.save();
-    return new Blob([pdfBytes], { type: "application/pdf" });
-  }
-
   const handleConvertFile = async () => {
-    setLoader(true);
-    const mergedBlob = await pdfDocumentToBlob(mergedFile);
+    const file = await mergePDF();
+    console.log(file, "file");
 
     // Create a FormData and append the Blob
     const formData = new FormData();
     // formData.append('pdf_file', mergedBlob, 'merged.pdf');
 
-    formData.append("pdf_file", pdfFiles[0]);
-    formData.append("x", "187.174");
-    formData.append("y", "810.1739");
-    formData.append("width", "220.0435");
-    formData.append("height", "355.6088");
+    formData.append("pdf_file", file);
+    formData.append("x", "189.174");
+    formData.append("y", "812.1739");
+    formData.append("width", size?.widthsize);
+    formData.append("height", size?.heightsize);
 
     const data = await CropFile(formData);
-    setLoader(false);
   };
 
   return (
@@ -101,17 +98,15 @@ export default function FIleUpload() {
       <div className='relative my-[40px] sm:my-[60px] after:absolute after:content-[" "] after:shadow-red after:right-0 after:top-0 after:block after:h-[288px] after:w-[288px] after:rounded-[50%]'>
         <div className="shadow-dark bg-white p-3 sm:p-5 z-[3] relative rounded-2xl">
           <div
-            className={`border px-4 border-slate-300 flex flex-col items-center justify-evenly min-h-[250px] sm:min-h-[332px]  rounded-lg ${
-              isDragging ? "border-blue-500" : ""
-            }`}
+            className={`border px-4 border-slate-300 flex flex-col items-center justify-evenly min-h-[250px] sm:min-h-[332px]  rounded-lg border-blue-500`}
           >
-            <div {...getRootProps()} className="dropzone pt-2">
+            <div {...getRootProps()} className="dropzone">
               <div className="justify-center flex">
                 <Image
-                  src="/assets/icons/icons8-upload-document-96.png"
-                  width={50}
-                  height={80}
-                  className="w-[40px] sm:w-[50px]"
+                  src="/assets/pdficon.png"
+                  width={100}
+                  height={100}
+                  className="w-[100px] sm:w-[200px]"
                   alt="file"
                 />
               </div>
@@ -127,35 +122,36 @@ export default function FIleUpload() {
             {pdfFiles.length > 0 && (
               <div className="preview mt-4">
                 {pdfFiles.map((file, index) => {
-                  const elementToRemove = document.querySelector(
-                    ".react-pdf__Page__annotations"
-                  );
-                  if (elementToRemove) {
-                    elementToRemove.remove();
-                  }
+                  const fileName =
+                    file?.name?.length > 12
+                      ? `${file?.name?.slice(0, 12)}...`
+                      : file?.name;
+
                   return (
                     <div key={index}>
-                      <div className="pdf-preview w-[100px]">
+                      <div className="pdf-preview w-[100px]" key={index}>
                         <object
+                          className="custom-scrollbars__content"
                           width="100px"
                           height="100px"
                           data={URL.createObjectURL(file)}
                         ></object>
+
                         <button
                           className="remove-button z-[9999999]"
-                          onClick={() => removeFile(index)}
+                          onClick={() => onRemoveFile(index)}
                         >
                           <BiTrash />
                         </button>
                       </div>
-                      <p>{file.name}</p>
+                      <p>{fileName}</p>
                     </div>
                   );
                 })}
               </div>
             )}
 
-            {pdfFiles.length > 0 && (
+            {pdfFiles.length > 0 && !cropURL ? (
               <div className="p-5">
                 {loader ? (
                   <div className="spinner"></div>
@@ -168,13 +164,21 @@ export default function FIleUpload() {
                   </button>
                 )}
               </div>
+            ) : (
+              pdfFiles.length > 0 && (
+                <a
+                  href={cropURL?.file_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="py-6"
+                >
+                  <button className="flex gap-4 bg-[#3661e3] hover:bg-[#4f79f9] transition focus:ring-2 outline-none focus:ring-[#3661e391] focus:ring-offset-2 text-white text-[14px] sm:text-[18px] rounded px-8 py-2.5">
+                    Download
+                  </button>
+                </a>
+              )
             )}
           </div>
-          {cropURL && (
-            <a href={cropURL?.file_url} target="_blank" rel="noreferrer">
-              <h3>View Merged PDF</h3>
-            </a>
-          )}
         </div>
         <div className="absolute h-[235px] w-[241px] shadow-blue left-0 top-[39px] rounded-[50%]"></div>
       </div>
