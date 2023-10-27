@@ -1,9 +1,132 @@
-import { useContext, useEffect, useState } from "react";
-import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useContext, useEffect, useState, Fragment } from "react";
 import Link from "next/link";
 import GlobalContext from "@/contexts/GlobalContext";
 import { useRouter } from "next/router";
+
+import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import {
+  ArrowPathIcon,
+  Bars3Icon,
+  ChartPieIcon,
+  CursorArrowRaysIcon,
+  FingerPrintIcon,
+  SquaresPlusIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  PhoneIcon,
+  PlayCircleIcon,
+} from "@heroicons/react/20/solid";
+
+const products = [
+  {
+    name: "Analytics",
+    description: "Get a better understanding of your traffic",
+    href: "#",
+    icon: ChartPieIcon,
+  },
+  {
+    name: "Engagement",
+    description: "Speak directly to your customers",
+    href: "#",
+    icon: CursorArrowRaysIcon,
+  },
+  {
+    name: "Security",
+    description: "Your customers’ data will be safe and secure",
+    href: "#",
+    icon: FingerPrintIcon,
+  },
+  {
+    name: "Integrations",
+    description: "Connect with third-party tools",
+    href: "#",
+    icon: SquaresPlusIcon,
+  },
+  {
+    name: "Automations",
+    description: "Build strategic funnels that will convert",
+    href: "#",
+    icon: ArrowPathIcon,
+  },
+];
+const callsToAction = [
+  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
+  { name: "Contact sales", href: "#", icon: PhoneIcon },
+];
+const tools = [
+  {
+    id: 1,
+    img: "/assets/tools/merge.png",
+    title: "Merge PDF",
+    des: "Combine PDFs in the order you want with the easiest PDF merger available.",
+    url: "/merge-pdf",
+  },
+  {
+    id: 2,
+    img: "/assets/tools/crop.png",
+    title: "Crop PDF",
+    des: "Reduce file size while optimizing for maximal PDF quality.",
+    url: "/crop-pdf",
+  },
+  {
+    id: 3,
+    img: "/assets/tools/word.svg",
+    title: "PDF to Word",
+    des: "Easily convert your PDF files into easy to edit DOC and DOCX documents. The converted WORD document is almost 100% accurate.",
+    url: "#",
+  },
+  {
+    id: 4,
+    img: "/assets/tools/powerPoint.svg",
+    title: "PDF to PowerPoint",
+    des: "Turn your PDF files into easy to edit PPT and PPTX slideshows.",
+    url: "#",
+  },
+  {
+    id: 5,
+    img: "/assets/tools/excel.svg",
+    title: "PDF to Excel",
+    des: "Pull data straight from PDFs into Excel spreadsheets in a few short seconds.",
+    url: "#",
+  },
+  {
+    id: 6,
+    img: "/assets/tools/pdf.svg",
+    title: "Word to PDF",
+    des: "Make DOC and DOCX files easy to read by converting them to PDF.",
+    url: "#",
+  },
+  {
+    id: 7,
+    img: "/assets/tools/pPdf.svg",
+    title: "PowerPoint to PDF",
+    des: "Make PPT and PPTX slideshows easy to view by converting them to PDF.",
+    url: "#",
+  },
+  {
+    id: 8,
+    img: "/assets/tools/ePdf.svg",
+    title: "Excel to PDF",
+    des: "Make EXCEL spreadsheets easy to read by converting them to PDF.",
+    url: "#",
+  },
+  {
+    id: 9,
+    img: "/assets/tools/jpg.svg",
+    title: "PDF to JPG",
+    des: "Convert each PDF page into a JPG or extract all images contained in a PDF.",
+    url: "#",
+  },
+  {
+    id: 10,
+    img: "/assets/tools/jPdf.svg",
+    title: "JPG to PDF",
+    des: "Convert JPG images to PDF in seconds. Easily adjust orientation and margins.",
+    url: "#",
+  },
+];
 
 const navigation = {
   nav: [
@@ -25,13 +148,13 @@ const navigation = {
       current: false,
       accept: "application/pdf",
     },
-    {
-      name: "E-commerce",
-      href: "/crop-pdf",
-      current: false,
-      accept:
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    },
+    // {
+    //   name: "Tools",
+    //   href: "/tools",
+    //   current: false,
+    //   accept:
+    //     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    // },
   ],
   main: [
     {
@@ -83,9 +206,10 @@ const navigation = {
 };
 
 export default function Header({ HandelSelectTab }) {
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { selectTab, setSelectTab } = useContext(GlobalContext);
-  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     setSelectTab(
@@ -93,10 +217,12 @@ export default function Header({ HandelSelectTab }) {
     );
   }, [router.pathname]);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const openPopover = () => {
+    setIsOpen(true);
+  };
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const closePopover = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -142,33 +268,71 @@ export default function Header({ HandelSelectTab }) {
             );
           })}
 
-          <div className="relative inline-block text-left">
-            <button
-              onClick={toggleDropdown}
-              type="button"
-              className="text-sm group font-semibold leading-6 text-gray-900"
+          <Popover.Group className="hidden lg:flex lg:gap-x-12">
+            <Popover
+              as="div"
+              className="relative"
+              open={isOpen}
+              onOpen={openPopover}
+              onClose={closePopover}
             >
-              Tools
-            </button>
-
-            {isOpen && (
-              <div className="origin-top-right absolute right-0 mt-2 w-64 p-5 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div className="grid grid-cols-2 gap-y-2 gap-x-5 pt-2 w-[100%]">
-                  {navigation.main.map((item) => (
-                    <div key={item.name} className="text-start">
-                      <Link
-                        href={item.href}
-                        onClick={() => setSelectTab(item)}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                      >
-                        {item.name}
-                      </Link>
+              <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                Tools
+                <ChevronDownIcon
+                  className="h-5 w-5 flex-none text-gray-400"
+                  aria-hidden="true"
+                />
+              </Popover.Button>
+              <Popover.Panel className="absolute -left-[15rem] top-full z-10 mt-8 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                  {tools.map((item) => (
+                    <div
+                      key={item.name}
+                      className="group relative flex items-center gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50"
+                      onClick={closePopover}
+                    >
+                      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                        <img
+                          src={item.img}
+                          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <div className="flex-auto">
+                        <a
+                          onClick={() => {
+                            router.push(item.url);
+                          }}
+                          className="block font-semibold text-gray-900"
+                        >
+                          {item.title}
+                          <span className="absolute inset-0" />
+                        </a>
+                        {/* <p className="mt-1 text-gray-600">
+                            {item.des}
+                          </p> */}
+                      </div>
                     </div>
                   ))}
                 </div>
-              </div>
-            )}
-          </div>
+                <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                  {callsToAction.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
+                    >
+                      <item.icon
+                        className="h-5 w-5 flex-none text-gray-400"
+                        aria-hidden="true"
+                      />
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+              </Popover.Panel>
+            </Popover>
+          </Popover.Group>
         </div>
       </nav>
       <Dialog
@@ -212,7 +376,7 @@ export default function Header({ HandelSelectTab }) {
               </div>
             </div>
           </div>
-          <div className="relative inline-block text-left mt-6">
+          {/* <div className="relative inline-block text-left mt-6">
             <button
               onClick={toggleDropdown}
               type="button"
@@ -238,7 +402,7 @@ export default function Header({ HandelSelectTab }) {
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
         </Dialog.Panel>
       </Dialog>
     </header>

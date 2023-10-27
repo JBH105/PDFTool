@@ -105,17 +105,17 @@ export default function Merge() {
             className={`border px-4 border-slate-300 flex flex-col items-center justify-evenly min-h-[250px] sm:min-h-[332px]  rounded-lg`}
           >
             <div {...getRootProps()} className="dropzone pt-1">
-              <div className="justify-center flex">
+              <div className="justify-center flex lg:pt-6">
               <Image
-                  src="/assets/pdficon.png"
+                  src="/assets/upload.png"
                   width={100}
                   height={100}
-                  className="w-[100px] sm:w-[200px]"
+                  className="w-[100px] sm:w-[100px]"
                   alt="file"
                 />
               </div>
               <input {...getInputProps()} />
-              <h3 className="lg:text-[32px] hidden md:block sm:text-[28] text-[20px] text-[#171717] font-bold">
+              <h3 className="lg:text-[32px] sm:text-[28] text-[18px] text-[#171717] font-bold">
                 Drag and drop PDF files here, or click to select files
               </h3>
             </div>
