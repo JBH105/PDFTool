@@ -343,7 +343,7 @@ export default function Header({ HandelSelectTab }) {
       {isOpen && (
         <div className="origin-top-right overflow-hidden absolute right-6 mt-1 rounded-3xl shadow-lg bg-white ring-1 ring-gray-900/5">
           <div className="overflow-hidden">
-            <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {tools.map((item) => (
                 <div
                   key={item.name}
