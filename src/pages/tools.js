@@ -79,7 +79,7 @@ export default function Tools() {
       <section className="w-full flex justify-center py-4 px-4 bg-[#7CB9E8] bg-opacity-20">
         <div className="w-full max-w-[1080px] py-8">
           <p className="text-center text-[#00308F] text-[24px] md:text-[30px] font-bold pb-5">
-            What exactly is great about pdfcroppers that can provide you?
+            Our Comprehensive Toolkit
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {posts.map((post) => (

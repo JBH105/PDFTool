@@ -12,69 +12,66 @@ const navigation = {
     },
     {
       name: "Terms of Use",
-      href: "/about",
+      href: "/terms",
       current: false,
       accept: "image/*",
     },
     {
       name: "Privacy Policy",
-      href: "/about",
+      href: "/privacy",
       current: false,
       accept: "image/*",
     },
-    {
-      name: "Cancellation and Refund Policy",
-      href: "/about",
-      current: false,
-      accept: "image/*",
-    },
+    // {
+    //   name: "Cancellation and Refund Policy",
+    //   href: "/about",
+    //   current: false,
+    //   accept: "image/*",
+    // },
   ],
   main: [
     {
-      name: "PDF To URL",
+      name: "Merge PDF",
       href: "/crop-pdf",
-      current: false,
-      accept: "application/pdf",
     },
     {
-      name: "XLSX To URL",
+      name: "Crop PDF",
       href: "/xlsx-to-url",
-      current: false,
-      accept:
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     },
     {
-      name: "DOC To URL",
+      name: "PDF to Word",
       href: "/doc-to-url",
       current: false,
       accept: "application/msword",
     },
     {
-      name: "DOCX To URL",
+      name: "PDF to PowerPoint",
       href: "/docs-to-url",
-      current: true,
-      accept:
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     },
     {
-      name: "PPT To URL",
+      name: "PDF to Excel",
       href: "/ppt-to-url",
-      current: false,
-      accept: "application/vnd.ms-powerpoint",
     },
     {
-      name: "PPTX To URL",
+      name: "PDF to JPG",
       href: "/pptx-to-url",
-      current: false,
-      accept:
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
     },
     {
-      name: "IMAGE To URL",
+      name: "Word to PDF",
       href: "/image-to-url",
-      current: false,
-      accept: "image/*",
-    }
+    },
+    {
+      name: "PowerPoint to PDF",
+      href: "/image-to-url",
+    },
+    {
+      name: "Excel to PDF",
+      href: "/image-to-url",
+    },
+    {
+      name: "JPG to PDF",
+      href: "/image-to-url",
+    },
   ],
   social: [
     {
@@ -153,7 +150,12 @@ export default function Footer() {
               {/* <span className="sr-only">Your Company</span> */}
               <img className="h-[110px] w-auto" src="/assets/logo.png" alt="" />
             </a>
-            <p className="text-sm text-gray-600 text-start pt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis nostrum cum harum maiores recusandae possimus, iure veritatis molestiae sit optio.</p>
+            <p className="text-sm text-gray-600 text-start pt-2">
+              Discover PDF Crop. We're dedicated to streamlining your
+              digital tasks, offering top-tier services in cropping e-commerce
+              labels and file conversions. Join us on a journey of efficiency
+              and ease.
+            </p>
           </div>
           <div className="block min-[450px]:flex w-full md:w-[60%] justify-end gap-10 pt-5 md:pt-0">
             <div className="flex flex-col items-start w-full md:w-fit">
@@ -174,7 +176,7 @@ export default function Footer() {
             </div>
             <div className="flex flex-col items-start w-full md:w-fit pt-5 min-[450px]:pt-0">
               <p className="text-xl font-bold">TOOLS</p>
-              <div className="grid grid-cols-2 gap-y-2 gap-x-5 pt-2">
+              <div className="grid grid-cols-4 gap-y-2 gap-x-5 pt-2">
                 {navigation.main.map((item) => (
                   <div key={item.name} className="text-start">
                     <Link
@@ -203,7 +205,7 @@ export default function Footer() {
           ))}
         </div>
         <p className="mt-5 text-center text-xs leading-5 text-gray-500">
-          &copy; 2023 URL2fy, Inc. All rights reserved.
+          &copy; 2023 PDF Crop, Inc. All rights reserved.
         </p>
       </div>
     </footer>

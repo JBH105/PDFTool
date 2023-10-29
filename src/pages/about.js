@@ -11,18 +11,25 @@ const AboutPage = () => {
       </Head>
       <div className=" mx-auto max-w-5xl px-4 py-8">
         <h1 className="text-3xl font-bold mb-4">About</h1>
-        <p className="mb-4">Welcome to our file conversion service!</p>
+        <p className="mb-4">Welcome to PDF Crop!</p>
         <p className="mb-4">
-          Our Next.js project allows you to convert various file types into live
-          URLs. With our service, you can convert files such as PDFs, XLSX
-          spreadsheets, DOC and DOCX documents, PPT and PPTX presentations, as
-          well as images into URLs that can be easily shared and accessed
-          online.
+          At PDF Crop, we are dedicated to simplifying and enhancing
+          your digital document and image management experience. We take pride
+          in offering a wide range of services that empower you to effortlessly
+          crop e-commerce labels and convert files between various formats such
+          as PDF, Word, PowerPoint, Excel, and JPG. Our mission is to provide
+          you with the tools and resources you need to streamline your work,
+          increase productivity, and make your digital tasks easier.
         </p>
         <p className="mb-4">
-          Here are some key features of our file conversion service:
+          Our team is comprised of passionate individuals who share a common
+          goal: to provide you with top-notch solutions for all your document
+          and image conversion needs. We are committed to delivering excellence
+          in every aspect of our services, from user-friendly interfaces to
+          efficient processing and secure data handling. Your satisfaction and
+          trust are our highest priorities.
         </p>
-        <ul className="list-disc list-inside mb-4">
+        {/* <ul className="list-disc list-inside mb-4">
           <li>
             Support for multiple file formats, including PDF, XLSX, DOC, DOCX,
             PPT, PPTX, and various image formats.
@@ -47,26 +54,16 @@ const AboutPage = () => {
             Reliable and scalable architecture built on Next.js, leveraging the
             power of React for efficient rendering and performance.
           </li>
-        </ul>
+        </ul> */}
         <p className="mb-4">
-          Our file conversion service is designed to simplify the process of
-          sharing and accessing files online. Whether you need to share
-          important documents with colleagues, present slideshows, or showcase
-          images, our project provides a hassle-free solution.
+          Explore PDF Crop and experience the convenience and
+          efficiency of our tools. Whether you're a business professional,
+          student, or someone simply looking to simplify their digital life,
+          we're here to support you every step of the way.
         </p>
         <p className="mb-4">
-          To use our service, simply navigate to the homepage and select the
-          file you want to convert. After the file is uploaded and processed,
-          you will receive a live URL that you can share with others. The
-          converted file can then be accessed directly through the URL,
-          eliminating the need for recipients to download and open files
-          locally.
-        </p>
-        <p>
-          Thank you for choosing our file conversion service. We hope it
-          simplifies your file sharing needs and enhances your productivity. If
-          you have any questions or feedback, please don't hesitate to reach out
-          to our support team.
+          Thank you for choosing PDF Crop. We look forward to being
+          your trusted partner in all your digital conversion needs.
         </p>
       </div>
     </div>
