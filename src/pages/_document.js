@@ -6,8 +6,8 @@ export default function Document() {
       <Head>
         <meta name="theme-color" content="#000000" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="PDFCrop" />
         <meta property="og:image" content="/assets/logo.png" />
+        <meta property="og:title" content="PDFCrop" />
         <meta
           property="og:description"
           content="PDf Crop is a set of free, simple onlin tools for PDF file editing. You can resize, crop, rotate, splite or merge, optimize, and convert PDFs."
