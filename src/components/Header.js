@@ -27,7 +27,7 @@ const toolsOption = [
     img: "/assets/tools/crop.png",
     title: "Crop PDF",
     des: "Reduce file size while optimizing for maximal PDF quality.",
-    url: "/crop-pdf",
+    url: "/crop/flipkart",
   },
   {
     id: 3,
@@ -93,14 +93,14 @@ const ecommerce = [
     img: "/assets/tools/flipkart-logo.png",
     title: "FlipKart",
     des: "Combine PDFs in the order you want with the easiest PDF merger available.",
-    url: "/merge-pdf",
+    url: "/crop/flipkart",
   },
   {
     id: 2,
     img: "/assets/tools/Meesho_Logo.png",
     title: "Meesho",
     des: "Reduce file size while optimizing for maximal PDF quality.",
-    url: "/crop-pdf",
+    url: "/crop/meesho",
   },
 ];
 
@@ -112,25 +112,18 @@ const navigation = {
       current: false,
       accept: "",
     },
-    {
-      name: "Crop PDF",
-      href: "/crop-pdf",
-      current: false,
-      accept: "application/pdf",
-    },
+    // {
+    //   name: "Crop PDF",
+    //   href: "/crop-pdf",
+    //   current: false,
+    //   accept: "application/pdf",
+    // },
     {
       name: "Merge PDF",
       href: "/merge-pdf",
       current: false,
       accept: "application/pdf",
     },
-    // {
-    //   name: "Tools",
-    //   href: "/tools",
-    //   current: false,
-    //   accept:
-    //     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    // },
   ],
   main: [
     {

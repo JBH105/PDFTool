@@ -6,16 +6,8 @@ import { useDropzone } from "react-dropzone";
 import { PDFDocument } from "pdf-lib";
 
 export default function FIleUpload({ size }) {
-  const {
-    selectTab,
-    setSelectTab,
-    CropFile,
-    cropURL,
-    setCropURL,
-    loader,
-    setLoader,
-  } = useContext(GlobalContext);
-  const [isDragging, setIsDragging] = useState(false);
+  const { CropFile, cropURL, setCropURL, loader, setLoader } =
+    useContext(GlobalContext);
   const [pdfFiles, setPdfFiles] = useState([]);
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -85,10 +77,14 @@ export default function FIleUpload({ size }) {
     // formData.append('pdf_file', mergedBlob, 'merged.pdf');
 
     formData.append("pdf_file", file);
-    formData.append("x", "189.174");
-    formData.append("y", "812.1739");
+    formData.append("x", "173.174");
+    formData.append("y", "818.1739");
     formData.append("width", size?.widthsize);
     formData.append("height", size?.heightsize);
+
+    
+    // formData.append("width", "248");
+    // formData.append("height", "360.6088");
 
     const data = await CropFile(formData);
   };

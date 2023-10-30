@@ -4,9 +4,7 @@ require('dotenv').config();
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    BUCKETNAME: process.env.BUCKETNAME,
-    ACCESSKEYID: process.env.ACCESSKEYID,
-    SECRETACCESSKEY: process.env.SECRETACCESSKEY 
+    BASE_URL: process.env.BASE_URL,
   }
 };
 

@@ -13,7 +13,7 @@ const posts = [
     img: "/assets/tools/crop.png",
     title: "Crop PDF",
     des: "Reduce file size while optimizing for maximal PDF quality.",
-    url: "/crop-pdf",
+    url: "/crop/flipkart",
   },
   {
     id: 3,

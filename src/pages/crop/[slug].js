@@ -1,21 +1,31 @@
 import FIleUpload from "@/components/FIleUpload";
 import GlobalContext from "@/contexts/GlobalContext";
 import Head from "next/head";
-import React, { useContext, useMemo, useState } from "react";
+import { useRouter } from "next/router";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 
 export default function CropPDF() {
+  const route = useRouter();
+  const { slug } = route.query;
+
   const { selectTab, setSelectTab, setCropURL } = useContext(GlobalContext);
   const [size, setSize] = useState({});
 
-  const [lableSize, setLableSize] = useState("76.5x125");
+  const [lableSize, setLableSize] = useState("87.9x127.5");
+
+  useEffect(() => {
+    if (slug === "flipkart") {
+      setLableSize("87.9x127.5");
+    }
+  }, [slug]);
 
   const HandleSize = (event) => {
     setCropURL("");
     setLableSize(event.target.value);
   };
+
   useMemo(() => {
     const [width, height] = lableSize?.split("x");
-
     const widthsize = (parseFloat(width) * 72) / 25.5;
     const heightsize = (parseInt(height) * 72) / 25.5;
     setSize({ widthsize, heightsize });
@@ -29,7 +39,8 @@ export default function CropPDF() {
       <div className="py-5 min-h-[90vh]">
         <div className="px-3 text-center max-w-5xl mx-auto">
           <h1 className="mt-[30px] sm:mt-[56px] relative z-[3] text-[28px] sm:text-[32px] font-bold leading-[44px] md:text-[48px] lg:leading-[60px] text-gray-600 lg:mt-[76px] ">
-            Welcome to Label Crop - Simplify Your PDF Cropping!
+            Welcome to Label Crop - Simplify Your{" "}
+            {slug?.charAt(0)?.toUpperCase() + slug?.slice(1)} Label Cropping!
           </h1>
           <h3 className="mt-[20px] font-bold text-gray-500">
             Are you tired of struggling with complex PDF cropping tools? Look no
@@ -37,63 +48,66 @@ export default function CropPDF() {
             Our user-friendly website makes it a breeze to crop PDFs with
             precision and ease. Here's how it works:
           </h3>
-
-          <h3 className="mb-4 font-bold text-start text-[17px] mt-10 text-gray-900">
-            Select label size*
-          </h3>
-          <div className="flex items-center gap-8">
-            <div className="flex items-center pl-3">
-              <input
-                id="horizontal-list-radio-license"
-                type="radio"
-                value="76.5x125"
-                name="list-radio"
-                checked={lableSize === "76.5x125"}
-                className="w-4 h-4 text-blue-800 bg-gray-100"
-                onChange={HandleSize}
-              />
-              <label
-                htmlFor="horizontal-list-radio-license"
-                className="py-3 ml-4 text-[14px] font-bold text-gray-600"
-              >
-                75 × 125mm (Letter)
-              </label>
+          {slug !== "flipkart" && (
+            <div>
+              <h3 className="mb-4 font-bold text-start text-[17px] mt-10 text-gray-900">
+                Select label size*
+              </h3>
+              <div className="flex items-center gap-8">
+                <div className="flex items-center pl-3">
+                  <input
+                    id="horizontal-list-radio-license"
+                    type="radio"
+                    value="87.9x127.5"
+                    name="list-radio"
+                    checked={lableSize === "87.9x127.5"}
+                    className="w-4 h-4 text-blue-800 bg-gray-100"
+                    onChange={HandleSize}
+                  />
+                  <label
+                    htmlFor="horizontal-list-radio-license"
+                    className="py-3 ml-4 text-[14px] font-bold text-gray-600"
+                  >
+                    75 × 125mm (Letter)
+                  </label>
+                </div>
+                <div className="flex items-center pl-3">
+                  <input
+                    id="horizontal-list-radio-id"
+                    type="radio"
+                    value="77x125"
+                    checked={lableSize === "77x125"}
+                    name="list-radio"
+                    className="w-4 h-4 text-blue-800 bg-gray-100"
+                    onChange={HandleSize}
+                  />
+                  <label
+                    htmlFor="horizontal-list-radio-id"
+                    className="py-3 ml-4 text-[14px] font-bold text-gray-600"
+                  >
+                    77 × 125mm (Legal)
+                  </label>
+                </div>
+                <div className="flex items-center pl-3">
+                  <input
+                    id="horizontal-list-radio-id-3"
+                    type="radio"
+                    value="79x125"
+                    name="list-radio"
+                    checked={lableSize === "79x125"}
+                    className="w-4 h-4 text-blue-800 bg-gray-100"
+                    onChange={HandleSize}
+                  />
+                  <label
+                    htmlFor="horizontal-list-radio-id-3"
+                    className="py-3 ml-4 text-[14px] font-bold text-gray-600"
+                  >
+                    79 × 125mm (Tabloid)
+                  </label>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center pl-3">
-              <input
-                id="horizontal-list-radio-id"
-                type="radio"
-                value="77x125"
-                checked={lableSize === "77x125"}
-                name="list-radio"
-                className="w-4 h-4 text-blue-800 bg-gray-100"
-                onChange={HandleSize}
-              />
-              <label
-                htmlFor="horizontal-list-radio-id"
-                className="py-3 ml-4 text-[14px] font-bold text-gray-600"
-              >
-                77 × 125mm (Legal)
-              </label>
-            </div>
-            <div className="flex items-center pl-3">
-              <input
-                id="horizontal-list-radio-id-3"
-                type="radio"
-                value="79x125"
-                name="list-radio"
-                checked={lableSize === "79x125"}
-                className="w-4 h-4 text-blue-800 bg-gray-100"
-                onChange={HandleSize}
-              />
-              <label
-                htmlFor="horizontal-list-radio-id-3"
-                className="py-3 ml-4 text-[14px] font-bold text-gray-600"
-              >
-                79 × 125mm (Tabloid)
-              </label>
-            </div>
-          </div>
+          )}
           <h3 className="mb-4 font-bold text-start text-[17px] mt-8 text-gray-900">
             Features*
           </h3>

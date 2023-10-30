@@ -32,45 +32,45 @@ const navigation = {
   main: [
     {
       name: "Merge PDF",
-      href: "/crop-pdf",
+      href: "/merge-pdf",
     },
     {
       name: "Crop PDF",
-      href: "/xlsx-to-url",
+      href: "/crop/flipkart",
     },
     {
       name: "PDF to Word",
-      href: "/doc-to-url",
+      href: "#",
       current: false,
       accept: "application/msword",
     },
     {
       name: "PDF to PowerPoint",
-      href: "/docs-to-url",
+      href: "#",
     },
     {
       name: "PDF to Excel",
-      href: "/ppt-to-url",
+      href: "#",
     },
     {
       name: "PDF to JPG",
-      href: "/pptx-to-url",
+      href: "#",
     },
     {
       name: "Word to PDF",
-      href: "/image-to-url",
+      href: "#",
     },
     {
       name: "PowerPoint to PDF",
-      href: "/image-to-url",
+      href: "#",
     },
     {
       name: "Excel to PDF",
-      href: "/image-to-url",
+      href: "#",
     },
     {
       name: "JPG to PDF",
-      href: "/image-to-url",
+      href: "#",
     },
   ],
   social: [

@@ -8,7 +8,7 @@ const GlobalContext = React.createContext();
 
 const GlobalProvider = ({ children }) => {
   const [global, setGlobal] = useState({
-    serverURL: "https://db32-116-72-18-108.ngrok-free.app",
+    serverURL: process.env.BASE_URL,
   });
   const [selectTab, setSelectTab] = useState();
   const [cropURL, setCropURL] = useState("");
@@ -30,17 +30,17 @@ const GlobalProvider = ({ children }) => {
   );
 
   const CropFile = async (data) => {
-    setLoader(true)
+    setLoader(true);
     invokeServer("post", "/api/crop-pdf/", data)
       .then((result) => {
         if (result?.data) {
           result.data.file_url = global.serverURL + result?.data?.file_path;
           setCropURL(result.data);
-          setLoader(false)
+          setLoader(false);
         }
       })
       .catch((error) => {
-        setLoader(false)
+        setLoader(false);
         console.log(error, "-=-=-=>>>>>");
       });
   };
