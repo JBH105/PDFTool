@@ -144,7 +144,7 @@ export default function CropPDF() {
                 Sorted By Courier
               </label>
             </div>
-            <div className="flex items-center pl-3">
+            {/* <div className="flex items-center pl-3">
               <input
                 id=" hsdjjsjdbfjsd"
                 type="checkbox"
@@ -158,7 +158,7 @@ export default function CropPDF() {
               >
                 Create Manifest
               </label>
-            </div>
+            </div> */}
             <div className="flex items-center pl-3">
               <input
                 id=" dfgdftreth"
