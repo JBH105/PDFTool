@@ -9,7 +9,7 @@ export default function Index() {
   return (
     <div>
       <Head>
-        <title>PDFCrop</title>
+        <title>PDFTool</title>
       </Head>
       <Home />
     </div>
