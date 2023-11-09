@@ -95,13 +95,13 @@ const ecommerce = [
     des: "Combine PDFs in the order you want with the easiest PDF merger available.",
     url: "/crop/flipkart",
   },
-  {
-    id: 2,
-    img: "/assets/tools/Meesho_Logo.png",
-    title: "Meesho",
-    des: "Reduce file size while optimizing for maximal PDF quality.",
-    url: "/maintenance",
-  },
+  // {
+  //   id: 2,
+  //   img: "/assets/tools/Meesho_Logo.png",
+  //   title: "Meesho",
+  //   des: "Reduce file size while optimizing for maximal PDF quality.",
+  //   url: "/maintenance",
+  // },
 ];
 
 const navigation = {
