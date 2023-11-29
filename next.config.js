@@ -1,11 +1,21 @@
-require('dotenv').config();
+require("dotenv").config();
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  env: {
-    BASE_URL: process.env.BASE_URL,
-  }
-};
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disableDevLogs: true,
+});
 
-module.exports = nextConfig;
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
+const nextConfig = withBundleAnalyzer(
+  withPWA({
+    reactStrictMode: true,
+    env: {
+      BASE_URL: process.env.BASE_URL,
+    },}))
+
+    module.exports = nextConfig

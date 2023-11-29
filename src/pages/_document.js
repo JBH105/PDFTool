@@ -5,6 +5,8 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <meta name="theme-color" content="#000000" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/assets/logo.png" />
         <meta property="og:title" content="PDFCrop" />
