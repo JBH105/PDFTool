@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ducanh2912/next-pwa": "^9.7.2",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@next/bundle-analyzer": "^14.0.3",
