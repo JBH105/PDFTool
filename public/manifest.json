@@ -6,7 +6,7 @@
     "scope": ".",
     "start_url": "/",
     "name": "PDFTool",
-    "short_name": "Tool",
+    "short_name": "PDFTool",
     "description": "PDf Tool is a set of free, simple onlin tools for PDF file editing. You can resize, crop, rotate, splite or merge, optimize, and convert PDFs.",
     "icons": [
         {
