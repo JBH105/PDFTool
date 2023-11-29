@@ -9,15 +9,22 @@ export default function Document() {
         <link rel="manifest" href="/manifest.json" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/assets/logo.png" />
-        <meta property="og:title" content="PDFCrop" />
+        <meta property="og:title" content="PDFTool" />
         <meta
           property="og:description"
-          content="PDf Crop is a set of free, simple onlin tools for PDF file editing. You can resize, crop, rotate, splite or merge, optimize, and convert PDFs."
+          content="PDf Tool is a set of free, simple onlin tools for PDF file editing. You can resize, crop, rotate, splite or merge, optimize, and convert PDFs."
         />
         <meta
           property="keywords"
           content="url,
           pdf,
+          pdftool,
+          tool,
+          pdftools,
+          lable,
+          lablecrop,
+          croplable,
+          e-commerce,
           link,
           live link,
           pdf to live link,
