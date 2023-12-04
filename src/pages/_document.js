@@ -5,6 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <meta name="theme-color" content="#000000" />
+        <meta name="google-adsense-account" content="ca-pub-2451180821646832"></meta>
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
         <meta property="og:type" content="website" />
