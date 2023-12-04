@@ -19,7 +19,7 @@ export default function MergePdf() {
           </h1>
           <h3 className="mt-[20px] font-bold text-gray-500">
             Are you tired of juggling multiple PDF files and struggling with
-            complex merging tools? Look no further! PDF Crop now offers a
+            complex merging tools? Look no further! PDF Tool now offers a
             dedicated PDF merging feature to streamline your PDF merging
             experience. Our user-friendly website makes it a breeze to merge
             PDFs with precision and ease. Here's how it works:

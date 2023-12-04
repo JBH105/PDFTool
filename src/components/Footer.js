@@ -151,7 +151,7 @@ export default function Footer() {
               <img className="h-[110px] w-auto" src="/assets/logo.png" alt="" />
             </a>
             <p className="text-sm text-gray-600 text-start pt-2">
-              Discover PDF Crop. We're dedicated to streamlining your
+              Discover PDF Tool. We're dedicated to streamlining your
               digital tasks, offering top-tier services in cropping e-commerce
               labels and file conversions. Join us on a journey of efficiency
               and ease.
@@ -205,7 +205,7 @@ export default function Footer() {
           ))}
         </div>
         <p className="mt-5 text-center text-xs leading-5 text-gray-500">
-          &copy; 2023 PDF Crop, Inc. All rights reserved.
+          &copy; 2023 PDF Tool, Inc. All rights reserved.
         </p>
       </div>
     </footer>

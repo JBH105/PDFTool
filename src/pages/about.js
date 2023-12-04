@@ -11,9 +11,9 @@ const AboutPage = () => {
       </Head>
       <div className=" mx-auto max-w-5xl px-4 py-8">
         <h1 className="text-3xl font-bold mb-4">About</h1>
-        <p className="mb-4">Welcome to PDF Crop!</p>
+        <p className="mb-4">Welcome to PDF Tool!</p>
         <p className="mb-4">
-          At PDF Crop, we are dedicated to simplifying and enhancing
+          At PDF Tool, we are dedicated to simplifying and enhancing
           your digital document and image management experience. We take pride
           in offering a wide range of services that empower you to effortlessly
           crop e-commerce labels and convert files between various formats such
@@ -56,13 +56,13 @@ const AboutPage = () => {
           </li>
         </ul> */}
         <p className="mb-4">
-          Explore PDF Crop and experience the convenience and
+          Explore PDF Tool and experience the convenience and
           efficiency of our tools. Whether you're a business professional,
           student, or someone simply looking to simplify their digital life,
           we're here to support you every step of the way.
         </p>
         <p className="mb-4">
-          Thank you for choosing PDF Crop. We look forward to being
+          Thank you for choosing PDF Tool. We look forward to being
           your trusted partner in all your digital conversion needs.
         </p>
       </div>

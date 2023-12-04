@@ -11,7 +11,7 @@ const TermsPage = () => {
       </Head>
       <div className=" mx-auto max-w-5xl px-4 py-8">
         <h1 className="text-3xl font-bold mb-4">Terms of Use</h1>
-        <p className="mb-4">Welcome to PDF Crop!</p>
+        <p className="mb-4">Welcome to PDF Tool!</p>
         <p className="mb-4">
           These terms outline the rules and regulations that govern your use of
           our website and services. By accessing and using our website, you
@@ -27,7 +27,7 @@ const TermsPage = () => {
           </span>
           <li className="font-bold mb-2 mt-4">Service Usage:</li>
           <span className="mb-2">
-            PDF Crop provides services for cropping e-commerce labels and
+            PDF Tool provides services for cropping e-commerce labels and
             converting various file formats. You agree not to misuse or abuse
             our services, including uploading malicious or inappropriate
             content.
@@ -40,7 +40,7 @@ const TermsPage = () => {
           <li className="font-bold mb-2 mt-4">Intellectual Property:</li>
           <span className="mb-2">
             All content, logos, and trademarks on our website are the property
-            of PDF Crop. You may not use, reproduce, or distribute our content
+            of PDF Tool. You may not use, reproduce, or distribute our content
             without our permission.
           </span>
           <li className="font-bold mb-2 mt-4">Disclaimers:</li>
@@ -52,7 +52,7 @@ const TermsPage = () => {
         </ul>
         <p className="mb-4">
           Please review the complete Terms of Use for a comprehensive
-          understanding of your rights and responsibilities when using PDF Crop.
+          understanding of your rights and responsibilities when using PDF Tool.
         </p>
       </div>
     </div>

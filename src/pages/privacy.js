@@ -11,9 +11,9 @@ const PrivacyPage = () => {
       </Head>
       <div className=" mx-auto max-w-5xl px-4 py-8">
         <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
-        <p className="mb-4">Welcome to PDF Crop!</p>
+        <p className="mb-4">Welcome to PDF Tool!</p>
         <p className="mb-4">
-          At PDF Crop, we are committed to protecting your privacy.
+          At PDF Tool, we are committed to protecting your privacy.
           Our Privacy Policy outlines how we collect, use, and protect your
           personal information.
         </p>
