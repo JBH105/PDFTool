@@ -11,11 +11,11 @@ export default function CropPDF() {
   const { selectTab, setSelectTab, setCropURL } = useContext(GlobalContext);
   const [size, setSize] = useState({});
 
-  const [lableSize, setLableSize] = useState("87.9x127.5");
+  const [lableSize, setLableSize] = useState("87.9x134.6");
 
   useEffect(() => {
     if (slug === "flipkart") {
-      setLableSize("87.9x127.5");
+      setLableSize("87.9x134.6");
     }
   }, [slug]);
 
