@@ -77,7 +77,7 @@ export default function FIleUpload({ size }) {
     // formData.append('pdf_file', mergedBlob, 'merged.pdf');
 
     formData.append("pdf_file", file);
-    formData.append("x", "173.174");
+    formData.append("x", "168.174");
     formData.append("y", "820.1739");
     formData.append("width", size?.widthsize);
     formData.append("height", size?.heightsize);
