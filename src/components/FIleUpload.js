@@ -77,13 +77,13 @@ export default function FIleUpload({ size }) {
     // formData.append('pdf_file', mergedBlob, 'merged.pdf');
 
     formData.append("pdf_file", file);
-    formData.append("x", "168.174");
-    formData.append("y", "820.1739");
+    formData.append("x", "180.174");
+    formData.append("y", "815.1739");
     formData.append("width", size?.widthsize);
     formData.append("height", size?.heightsize);
 
-    // formData.append("width", "248");
-    // formData.append("height", "360.6088");
+    // formData.append("width", "235");
+    // formData.append("height", "355.6088");
 
     const data = await CropFile(formData);
   };
