@@ -216,7 +216,7 @@ export default function CropPDF() {
               4. Press Proceed Button:
             </span>
             <span className="pl-[5px] text-gray-900">
-              Once you're satisfied with your crop selection, hit the "Proceed"
+              Once you're satisfied with your crop selection, hit the "Crop File"
               button. Label Crop will start processing your PDF according to
               your specifications.
             </span>
