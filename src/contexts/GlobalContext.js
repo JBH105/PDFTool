@@ -8,7 +8,7 @@ const GlobalContext = React.createContext();
 
 const GlobalProvider = ({ children }) => {
   const [global, setGlobal] = useState({
-    serverURL: process.env.BASE_URL,
+    serverURL: "https://api.pdftool.in",
   });
   const [selectTab, setSelectTab] = useState();
   const [cropURL, setCropURL] = useState("");
@@ -41,9 +41,20 @@ const GlobalProvider = ({ children }) => {
       })
       .catch((error) => {
         setLoader(false);
-        console.log(error, "-=-=-=>>>>>");
       });
   };
+
+  const DeleteFile = async (data) => {
+    try {
+      setLoader(true);
+      await invokeServer("get", `/api/download-cropped-pdf/${data}/`);
+      setLoader(false);
+    } catch (error) {
+      console.log(error);
+      setLoader(false);
+    }
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -55,6 +66,7 @@ const GlobalProvider = ({ children }) => {
         setCropURL,
         loader,
         setLoader,
+        DeleteFile,
       }}
     >
       {children}

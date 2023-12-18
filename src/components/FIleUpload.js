@@ -6,10 +6,10 @@ import { useDropzone } from "react-dropzone";
 import { PDFDocument } from "pdf-lib";
 
 export default function FIleUpload({ size }) {
-  const { CropFile, cropURL, setCropURL, loader, setLoader } =
+  const { CropFile, cropURL, setCropURL, loader, setLoader, DeleteFile } =
     useContext(GlobalContext);
   const [pdfFiles, setPdfFiles] = useState([]);
-
+  // Drop File
   const onDrop = useCallback((acceptedFiles) => {
     setCropURL("");
     const pdfFilesArray = acceptedFiles.filter(
@@ -17,7 +17,7 @@ export default function FIleUpload({ size }) {
     );
     setPdfFiles(pdfFilesArray);
   }, []);
-
+  // Remove File
   const onRemoveFile = (index) => {
     setCropURL("");
     const updatedFiles = [...pdfFiles];
@@ -30,7 +30,7 @@ export default function FIleUpload({ size }) {
     accept: ".pdf",
     multiple: true, // Allow multiple file uploads
   });
-
+  // Merge File
   const mergePDF = async () => {
     try {
       setLoader(true);
@@ -67,7 +67,7 @@ export default function FIleUpload({ size }) {
       console.error("Error while merging PDFs:", error);
     }
   };
-
+  // Crop File
   const handleConvertFile = async () => {
     const file = await mergePDF();
     console.log(file, "file");
@@ -82,13 +82,18 @@ export default function FIleUpload({ size }) {
     formData.append("width", size?.widthsize);
     formData.append("height", size?.heightsize);
 
-    
     // formData.append("width", "248");
     // formData.append("height", "360.6088");
 
     const data = await CropFile(formData);
   };
-
+  // Delete File
+  const HandleDeleteFile = () => {
+    setPdfFiles([]);
+    setTimeout(async () => {
+      await DeleteFile(cropURL.file_name);
+    }, 5000);
+  };
   return (
     <div>
       <div className='relative my-[40px] sm:my-[60px] after:absolute after:content-[" "] after:shadow-red after:right-0 after:top-0 after:block after:h-[288px] after:w-[288px] after:rounded-[50%]'>
@@ -96,25 +101,27 @@ export default function FIleUpload({ size }) {
           <div
             className={`border px-4 border-slate-300 flex flex-col items-center justify-evenly min-h-[250px] sm:min-h-[332px]  rounded-lg border-blue-500`}
           >
-            <div {...getRootProps()} className="dropzone">
-              <div className="justify-center lg:pt-6 flex">
-                <Image
-                  src="/assets/upload.png"
-                  width={100}
-                  height={100}
-                  className="w-[100px] sm:w-[100px]"
-                  alt="file"
-                />
+            <div {...getRootProps()}>
+              <div className="dropzone">
+                <div className="justify-center lg:pt-6 flex">
+                  <Image
+                    src="/assets/upload.png"
+                    width={100}
+                    height={100}
+                    className="w-[100px] sm:w-[100px]"
+                    alt="file"
+                  />
+                </div>
+                <h3 className="lg:text-[32px] sm:text-[28] text-[18px] text-[#171717] font-bold">
+                  Drag and drop PDF files here, or click to select files
+                </h3>
               </div>
-              <input {...getInputProps()} />
-              <h3 className="lg:text-[32px] sm:text-[28] text-[18px] text-[#171717] font-bold">
-                Drag and drop PDF files here, or click to select files
-              </h3>
+              <p className="text-[10px] mt-6 sm:text-xs  text-gray-400">
+                Upload documents of up to 10 MB in PDF
+              </p>
             </div>
-            <p className="text-[10px] sm:text-xs  text-gray-400">
-              Upload documents of up to 10 MB in PDF, DOC, DOCX, RTF, PPT, PPTX,
-              JPEG, PNG, or TXT
-            </p>
+            <input {...getInputProps()} />
+
             {pdfFiles.length > 0 && (
               <div className="preview mt-4">
                 {pdfFiles.map((file, index) => {
@@ -168,7 +175,10 @@ export default function FIleUpload({ size }) {
                   rel="noreferrer"
                   className="py-6"
                 >
-                  <button className="flex gap-4 bg-[#3661e3] hover:bg-[#4f79f9] transition focus:ring-2 outline-none focus:ring-[#3661e391] focus:ring-offset-2 text-white text-[14px] sm:text-[18px] rounded px-8 py-2.5">
+                  <button
+                    className="flex gap-4 bg-[#3661e3] hover:bg-[#4f79f9] transition focus:ring-2 outline-none focus:ring-[#3661e391] focus:ring-offset-2 text-white text-[14px] sm:text-[18px] rounded px-8 py-2.5"
+                    onClick={HandleDeleteFile}
+                  >
                     Download
                   </button>
                 </a>
