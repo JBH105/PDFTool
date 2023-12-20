@@ -112,12 +112,12 @@ const navigation = {
       current: false,
       accept: "",
     },
-    {
-      name: "Flipkart Label Crop",
-      href: "/crop/flipkart",
-      current: false,
-      accept: "application/pdf",
-    },
+    // {
+    //   name: "Flipkart Label Crop",
+    //   href: "/crop/flipkart",
+    //   current: false,
+    //   accept: "application/pdf",
+    // },
     {
       name: "Merge PDF",
       href: "/merge-pdf",
